@@ -127,6 +127,12 @@ def set_parameters(dev, strategy, vault, governance, guardian, keeper, controlle
 
     console.print("[green]Strategist existing or set at: [/green]", governance)
 
+    if vault.strategy() != strategy.address:
+        vault.setStrategy(strategy.address, {"from": dev})
+        time.sleep(sleep_between_tx)
+
+    console.print("[green]Vault strategy existing or set at: [/green]", strategy.address)
+
     if strategy.governance() != governance:
         strategy.setGovernance(governance, {"from": dev})
         time.sleep(sleep_between_tx)
